@@ -20,6 +20,6 @@ int main(){
         solve();
     }
     gettimeofday(&et,NULL);
-    cout<<"time: "<<(double)((et.tv_sec-st.tv_sec)*1000000+et.tv_usec-st.tv_usec)/1000<<"ms\n";
+    cerr<<"time: "<<(double)((et.tv_sec-st.tv_sec)*1000000+et.tv_usec-st.tv_usec)/1000<<"ms\n";
 
 }
