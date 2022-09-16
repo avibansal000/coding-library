@@ -12,7 +12,7 @@ void solve(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    int tt;
+    int tt=1;
     cin>>tt;
     struct timeval st,et;
     gettimeofday(&st,NULL);
