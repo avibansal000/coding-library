@@ -1,52 +1,52 @@
-vector<int> kmp(string s, string pat,int start_pos=0){
-    int j=-1,i;
-    int pat_length=pat.length();
-    vector<int> table(pat_length,-1);
-    for(i=1;i<pat_length;i++){
-        if(table[i-1]==-1){
-            if(pat[0]==pat[i]){
-                table[i]=0;
-            }
-            
+// calculate the prefix function 
+vector<int> prefix_function(string s)
+{
+    int n = s.size();
+    vector<int> p(n, -1);
+    for (int i = 1; i < n; i++)
+    {
+        int j = p[i - 1];
+        while (j > -1 && s[i] != s[j + 1])
+        {
+            j = p[j];
         }
-        else{
-            if(pat[i]==pat[table[i-1]+1]){
-                table[i]=table[i-1]+1;
-
-            }
-            else{
-                if(pat[i]==pat[0]){
-                    table[i]=0;
-                }
-            }
+        if (s[i] == s[j + 1])
+        {
+            j++;
         }
+        p[i] = j;
     }
-    debug(table);
-    i=start_pos;
-    j=-1;
-    vector<int> ans;
-    for(i;i<(int)s.length();){
-        
-        if(s[i]==pat[j+1]){
-            if(j==pat_length-2){
-                ans.push_back(i-pat_length+1);
-                j=pat[j]-1;
+    return p;
+}
+// pattern matcher
+vector<int> kmp_check(string a, string b)
+{
+    vector<int> pref = prefix_function(b);
+    int i = 0;
+    int j = 0;
+    int n = a.size();
+    int m = b.size();
+    vector<int> pos;
+    for (; i < n;)
+    {
+        if (a[i] == b[j])
+        {
+            if (j == m-1)
+            {
+                pos.push_back(i - m+1);
+                j=pref[j];
             }
-            i++;j++;
+            i++;
+            j++;
         }
         else{
-            if(j==-1){
+            if(j>0)
+            j=pref[j-1]+1;
+            else{
                 i++;
-            }
-            else{
-
-            j=table[j];
+                j=0;
             }
         }
     }
-
-debug(ans);
-return ans;
-
-
+    return pos;
 }
