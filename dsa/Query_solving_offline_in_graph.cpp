@@ -2,8 +2,6 @@ struct query
 {
     ll v, u;
     bool united;
-    // query(int _v, int _u) : v(_v), u(_u) {
-    // }
 };
 struct dsu_save
 {
@@ -121,10 +119,7 @@ struct QueryTree
 
                 if (e.united == 0)
                 {
-                    ans += dsu.rnk[dsu.find_set(e.u)] * dsu.rnk[dsu.find_set(e.v)];
-                    debug(e);
-                    debug(dsu.rnk);
-                    debug(ans);
+                    ans += dsu.rnk[dsu.find_set(e.u)] * dsu.rnk[dsu.find_set(e.v)];  // we can change it accordingly 
                 }
             }
         }
@@ -142,7 +137,7 @@ struct QueryTree
     }
 
     ll solve()
-    {
+    {   
         dfs(1, 0, T - 1);
         return ans;
     }

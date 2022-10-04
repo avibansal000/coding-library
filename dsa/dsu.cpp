@@ -1,10 +1,7 @@
 template<typename A>
 class DSU{
-
-    
 public:
     vector<A>parent;
- 
     DSU(A n){
         parent.resize(n);
         for(A i=0;i<n;i++)
